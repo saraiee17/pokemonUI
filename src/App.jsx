@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react'
 import './App.css'
-import { Card, CardContent, Typography } from '@mui/material';
+import Card from './components/Card'
 
 function App() {
   const [pokemon, setPokemon] = useState([])
@@ -9,7 +9,7 @@ function App() {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.results);
+        // console.log(data.results);
         setPokemon(data.results)
       })
       .catch((error) => console.log(error));
@@ -18,17 +18,8 @@ function App() {
   return (
     <>
     <p>POKEMON</p>
-    {pokemon.map((poke) => (
-        <Card key={poke.name}>
-          <CardContent>
-            <Typography variant="h5" component="div">
-              {poke.name}
-            </Typography>
-            <Typography variant="body2">
-              This is a Material-UI Card component.
-            </Typography>
-          </CardContent>
-        </Card>
+    {pokemon.map((poke,index) => (
+       <Card poke={poke} index={index} key={index}/>
       ))}
     </>
   )
