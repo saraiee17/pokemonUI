@@ -3,12 +3,14 @@ import { SquadContext } from './contexts/SquadContext'
 import './App.css'
 import Card from './components/Card'
 import Nav from './components/Nav'
+import Squad from './components/Squad'
 import { Grid, Button } from '@mui/material';
 
 function App() {
   const [pokemon, setPokemon] = useState([])
-  const [image,setImage]=useState('');
-  const [index,setIndex]= useState('');
+  const [images,setImages]=useState('');
+  const [showSquad, setShowSquad]=useState(false);
+  // const [index,setIndex]= useState('');
   const [squad, setSquad] = useState([]);
 
 
@@ -23,7 +25,7 @@ function App() {
           const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`;
           return imageUrl;
         });
-        setImage(pokemonImages);
+        setImages(pokemonImages);
       })
       .catch((error) => console.log(error));
     },[]);
@@ -31,15 +33,18 @@ function App() {
 
   return (
     <>
-       <SquadContext.Provider value={{squad,image}}>
+       <SquadContext.Provider value={{squad,setSquad, images,pokemon, setShowSquad, showSquad}}>
     <Nav/>
     <div className='cardHolder'>
     <Grid container spacing={2} justifyContent="center">
-    {pokemon.map((poke,index) => ( 
-      <Grid key={index} item xs={12} sm={6} md={4} lg={4} xl={4}>
-       <Card poke={poke} index={index} key={index} image={image[index]}/>
-       </Grid>
-      ))}
+        {showSquad ? 
+        (<Squad />) 
+      : 
+      ( pokemon.map((poke, index) => (
+        <Grid key={index} item xs={12} sm={6} md={4} lg={4} xl={4}>
+          <Card poke={poke} index={index} key={index} image={images[index]} />
+        </Grid>)) )
+    }
       </Grid>
       </div>
       </SquadContext.Provider>

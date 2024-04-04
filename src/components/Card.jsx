@@ -3,12 +3,18 @@ import { Card, CardContent, Typography, Button} from '@mui/material';
 import {SquadContext} from '../contexts/SquadContext';
 
 function MyCard(props) {
-    const { poke,index,image } = props;
+    const { poke,image } = props;
     // const [image,setImage]=useState('');
 
-    const {squad} = useContext(SquadContext);
+    const {squad, setSquad, images,pokemon,showSquad} = useContext(SquadContext);
 
-    
+    function addSquadMember(){
+      if (squad.length < 6) {
+        setSquad([...squad, poke]);
+    } else {
+        console.log('Your squad is full! You cannot add more members.');
+    }
+    }
     // useEffect(() => {
     //     fetch( `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`)
     //       .then((response) => {
@@ -29,7 +35,7 @@ function MyCard(props) {
         {poke.types && poke.types.map((typeData,index) => (
        <p key={index}>{typeData.type.name}</p>
       ))}
-      <Button variant="outlined" color="error" style={{ backgroundColor: '#ffcccc'  }}> Add to Squad</Button>
+      <Button variant="outlined" color="error" style={{ backgroundColor: '#ffcccc'  }} onClick={addSquadMember()}> Add to Squad</Button>
         </Typography>
       </CardContent>
     </Card>

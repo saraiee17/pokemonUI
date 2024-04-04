@@ -1,13 +1,21 @@
-import {React,useState, useEffect} from 'react';
+import {React,useState, useEffect,useContext} from 'react';
 import {  Button} from '@mui/material';
+import {SquadContext} from '../contexts/SquadContext';
+
 
 function Nav() {
+    const {squad,images,pokemon,setShowSquad, showSquad} = useContext(SquadContext);
 
     return (
         <>
             <div className='nav'>
                 <p className='App'>POKEMON</p>
-                <Button variant="outlined" color="error" style={{ backgroundColor: '#ffcccc'  }}> My Squad</Button>
+                {/* {squad.length>2? <Button>Battle</Button> :} */}
+                { showSquad ?
+                (<Button variant="outlined" color="error" style={{ backgroundColor: '#ffcccc'  }} onClick={()=>setShowSquad(false)}>Home</Button>) 
+                :
+                (<Button variant="outlined" color="error" style={{ backgroundColor: '#ffcccc'  }} onClick={()=>setShowSquad(true)}> My Squad</Button>)
+}
             </div>
         </>
         )

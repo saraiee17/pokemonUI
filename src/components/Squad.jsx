@@ -1,27 +1,27 @@
 import {  useContext } from 'react'
 import {SquadContext} from '../contexts/SquadContext';
-import {  Button} from '@mui/material';
+import {  Card, CardContent, Typography, Button} from '@mui/material';
 
 function Squad() {
-    const {squad} = useContext(SquadContext);
+    const {squad,images,pokemon} = useContext(SquadContext);
 
     return (
         <>
             <p>My Squad</p>
+            <p> {squad.length}/6</p>
+            {squad.map((poke,index) => ( 
             <Card className='card'>
       <CardContent style={{ textAlign: 'center' }}>
-        <img src={image} />
+        <img src={images[index]} />
         <Typography variant="h5" component="div">
           {poke.name}
         </Typography>
         <Typography variant="body2">
-        {poke.types && poke.types.map((typeData,index) => (
-       <p key={index}>{typeData.type.name}</p>
-      ))}
-      <Button variant="outlined" color="error" style={{ backgroundColor: '#ffcccc'  }}> Add to Squad</Button>
+      <Button variant="outlined" color="error" style={{ backgroundColor: '#ffcccc'  }}> Remove </Button>
         </Typography>
       </CardContent>
     </Card>
+     ))}
         </>
         )
 }
