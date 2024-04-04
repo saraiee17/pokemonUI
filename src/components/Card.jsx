@@ -1,19 +1,24 @@
 import {React,useState, useEffect, useContext} from 'react';
 import { Card, CardContent, Typography, Button} from '@mui/material';
+import {SquadContext} from '../contexts/SquadContext';
 
 function MyCard(props) {
-    const { poke,index } = props;
-    const [image,setImage]=useState('');
+    const { poke,index,image } = props;
+    // const [image,setImage]=useState('');
+
     const {squad} = useContext(SquadContext);
 
-    useEffect(() => {
-        fetch( `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`)
-          .then((response) => {
-            setImage(response.url);
-          })
-          .catch((error) => console.log(error));
-        },[]);
+    
+    // useEffect(() => {
+    //     fetch( `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`)
+    //       .then((response) => {
+    //         setImage(response.url);
+    //       })
+    //       .catch((error) => console.log(error));
+    //     },[]);
+
   return (
+ 
     <Card className='card'>
       <CardContent style={{ textAlign: 'center' }}>
         <img src={image} />
