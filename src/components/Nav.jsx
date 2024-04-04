@@ -1,6 +1,7 @@
 import {React,useState, useEffect,useContext} from 'react';
 import {  Button} from '@mui/material';
 import {SquadContext} from '../contexts/SquadContext';
+import TextField from '@mui/material/TextField';
 
 
 function Nav() {
@@ -10,7 +11,7 @@ function Nav() {
         <>
             <div className='nav'>
                 <p className='App'>POKEMON</p>
-                {/* {squad.length>2? <Button>Battle</Button> :} */}
+                <TextField id="outlined-basic" label="Search" variant="outlined" />
                 {showSquad ? (
                     <>
                         <Button variant="outlined" color="error" style={{ backgroundColor: '#ffcccc' }} onClick={() => setShowSquad(false)}>Home</Button>
