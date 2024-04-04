@@ -4,6 +4,10 @@ import {  Card, CardContent, Typography, Button} from '@mui/material';
 
 function Squad() {
     const {squad,images,pokemon} = useContext(SquadContext);
+    function extractUrl(url) {
+        const parts = url.split('/');
+        return parseInt(parts[parts.length - 2]);
+    }
 
     return (
         <>
@@ -12,7 +16,7 @@ function Squad() {
             {squad.map((poke,index) => ( 
             <Card className='card'>
       <CardContent style={{ textAlign: 'center' }}>
-        <img src={images[index]} />
+        <img src={images[[extractUrl(poke.url)]-1]} />
         <Typography variant="h5" component="div">
           {poke.name}
         </Typography>

@@ -3,7 +3,7 @@ import { Card, CardContent, Typography, Button} from '@mui/material';
 import {SquadContext} from '../contexts/SquadContext';
 
 function MyCard(props) {
-    const { poke,image } = props;
+    const { poke,image,index } = props;
     // const [image,setImage]=useState('');
 
     const {squad, setSquad, images,pokemon,showSquad} = useContext(SquadContext);
@@ -23,11 +23,14 @@ function MyCard(props) {
     //       .catch((error) => console.log(error));
     //     },[]);
 
+
+    console.log(squad); 
+
   return (
  
     <Card className='card'>
       <CardContent style={{ textAlign: 'center' }}>
-        <img src={image} />
+        <img src={images[index]} />
         <Typography variant="h5" component="div">
           {poke.name}
         </Typography>
@@ -35,7 +38,7 @@ function MyCard(props) {
         {poke.types && poke.types.map((typeData,index) => (
        <p key={index}>{typeData.type.name}</p>
       ))}
-      <Button variant="outlined" color="error" style={{ backgroundColor: '#ffcccc'  }} onClick={addSquadMember()}> Add to Squad</Button>
+      <Button variant="outlined" color="error" style={{ backgroundColor: '#ffcccc'  }} onClick={addSquadMember}> Add to Squad</Button>
         </Typography>
       </CardContent>
     </Card>
