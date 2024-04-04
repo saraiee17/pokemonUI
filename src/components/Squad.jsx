@@ -3,10 +3,15 @@ import {SquadContext} from '../contexts/SquadContext';
 import {  Card, CardContent, Typography, Button} from '@mui/material';
 
 function Squad() {
-    const {squad,images,pokemon} = useContext(SquadContext);
+    const {squad,setSquad,images,pokemon} = useContext(SquadContext);
     function extractUrl(url) {
         const parts = url.split('/');
         return parseInt(parts[parts.length - 2]);
+    }
+
+    function removePokemon(poke){
+        const updatedSquad = squad.filter(item => item !== poke);
+        setSquad(updatedSquad);
     }
 
     return (
@@ -21,7 +26,7 @@ function Squad() {
           {poke.name}
         </Typography>
         <Typography variant="body2">
-      <Button variant="outlined" color="error" style={{ backgroundColor: '#ffcccc'  }}> Remove </Button>
+      <Button variant="outlined" color="error" style={{ backgroundColor: '#ffcccc'  }} onClick={()=>removePokemon(poke)}> Remove </Button>
         </Typography>
       </CardContent>
     </Card>

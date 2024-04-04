@@ -9,12 +9,18 @@ function MyCard(props) {
     const {squad, setSquad, images,pokemon,showSquad} = useContext(SquadContext);
 
     function addSquadMember(){
+      const noDuplicate = squad.some(member => member.url === poke.url);
+  
+  if (!noDuplicate) {
       if (squad.length < 6) {
         setSquad([...squad, poke]);
     } else {
         console.log('Your squad is full! You cannot add more members.');
     }
+    }else {
+      console.log('This Pokemon is already in your squad.');
     }
+  }
     // useEffect(() => {
     //     fetch( `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`)
     //       .then((response) => {
