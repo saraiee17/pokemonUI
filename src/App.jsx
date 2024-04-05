@@ -41,7 +41,7 @@ function App() {
         (<Squad />) 
       : 
       ( pokemon.map((poke, index) => (
-        <Grid key={index} item xs={12} sm={6} md={4} lg={4} xl={4}>
+        <Grid key={index} item xs={12} sm={6} md={4} lg={4} xl={3}>
           <Card poke={poke} index={index} key={index} image={images[index]} />
         </Grid>)) )
     }
